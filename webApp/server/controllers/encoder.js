@@ -11,7 +11,7 @@ var SAMPLE_RATE = 44100; // 44,100 Hz sample rate.
 // If we're getting raw PCM data as expected, calculate the number of bytes
 // that need to be read for `1 Second` of audio data.
 var BLOCK_ALIGN = SAMPLE_SIZE / 8 * CHANNELS; // Number of 'Bytes per Sample'
-var BYTES_PER_SECOND = exports.SAMPLE_RATE * BLOCK_ALIGN;
+var BYTES_PER_SECOND = SAMPLE_RATE * BLOCK_ALIGN;
 
 // Array of HttpServerResponse objects that are listening clients.
 var clients = [];

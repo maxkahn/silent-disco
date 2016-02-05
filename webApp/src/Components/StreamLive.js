@@ -112,7 +112,7 @@ class StreamLive extends React.Component {
           image: userData.scAvatarUri,
           listenerLiveCount: streamData.listenerLiveCount,
           creator: streamData.creator,
-          isLoading: false
+          isLoading: false,
           startPosition: ServerDate.now() - streamData.timestamp
         })
       })

@@ -35,6 +35,7 @@ class StreamLive extends React.Component {
 
     this.state = {
       status : "STOPPED",
+      startPosition: 0,
       disabled : false,
       desc: "",
       name: "",
@@ -112,6 +113,7 @@ class StreamLive extends React.Component {
           listenerLiveCount: streamData.listenerLiveCount,
           creator: streamData.creator,
           isLoading: false
+          startPosition: ServerDate.now() - streamData.timestamp
         })
       })
     })
@@ -156,6 +158,7 @@ class StreamLive extends React.Component {
         <Sound
           url={'/stream/' + this.props.params.streamId}
           playStatus={this.state.status}
+          playFromPosition={this.state.startPosition}
           onLoading={this.handleSongLoading}
           onPlaying={this.handleSongPlaying}
           onFinishedPlaying={this.handleSongFinishedPlaying} />

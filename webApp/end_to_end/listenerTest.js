@@ -238,18 +238,20 @@ casper.test.begin("Testing radio from listener's perspective", 35, function suit
         .then(callback);
     };
     MediaStreamTrack.getSources = MediaStreamTrack.getSources || overSources;
-    __utils__.echo(MediaStreamTrack.getSources(function(devices) {
-      var audioSources = [];
-      devices.forEach(function(device) {
-        if (device.kind === 'audio') {
-          audioSources.push({
-            id: device.id,
-            label: device.label || 'Input ' + audioSources.length + 1
-          })
-        }
-      });
-      return 'the audio sources are: ' + audioSources;
-    }));
+    var foundAudio = 'dummy found audio';
+    // var foundAudio = MediaStreamTrack.getSources(function(devices) {
+    //   var audioSources = [];
+    //   devices.forEach(function(device) {
+    //     if (device.kind === 'audio') {
+    //       audioSources.push({
+    //         id: device.id,
+    //         label: device.label || 'Input' + audioSources.length + 1;
+    //       });
+    //     }
+    //   });
+    //   return audioSources;
+    // });
+    __utils__.echo(foundAudio);
   });
 
   casper.then(function() {

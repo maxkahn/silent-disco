@@ -350,12 +350,20 @@ casper.then(function() {
 //from here down, I'm having problems
 
 casper.then(function() {
-  test.assertSelectorHasText('body', 'Built-in Audio Analog Stereo', 'at least the menu item appears somewhere');
+  this.wait(8000, function() {
+
+  });
+});
+
+casper.then(function() {
+  this.capture('dropdown.png');
+  //I'm not picking up the actual audio sources … I need to do a better job spoofing audio
   test.assertEvalEquals(function() {
     var possibButtons = Array.prototype.slice.call(document.querySelectorAll('span'))
       .filter(function(elem) {
         return elem.hasAttribute('type') && elem.getAttribute('type') === 'button' && window.getComputedStyle(elem)['font-size'] === '15px';
       });
+      __utils__.echo(possibButtons[0].textContent);
     return possibButtons.length;
   }, 3, 'there are three options in drop-down menu (assume no line-in)');
 });

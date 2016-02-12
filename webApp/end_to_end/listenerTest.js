@@ -350,12 +350,6 @@ casper.then(function() {
 //from here down, I'm having problems
 
 casper.then(function() {
-  this.wait(8000, function() {
-
-  });
-});
-
-casper.then(function() {
   this.capture('dropdown.png');
   //I'm not picking up the actual audio sources … I need to do a better job spoofing audio
   test.assertEvalEquals(function() {

@@ -49,15 +49,13 @@ casper.test.begin("Testing radio from listener's perspective", 35, function suit
   });
 
   casper.then(function() {
-
     test.assertEval(function() {
       var changedDivs = Array.prototype.slice.call(document.querySelectorAll('div'))
-        .map(function(elem) {
-          return window.getComputedStyle(elem);
-        }).filter(function(style) {
-          return style.transitionProperty === 'transform';
+        .filter(function(elem) {
+          return window.getComputedStyle(elem).transitionProperty === 'transform';
         });
-      return changedDivs.length === 1 && changedDivs[0].left === '0px';
+      return changedDivs.length === 1
+      && window.getComputedStyle(changedDivs[0]).left === '0px';
     }, 'exactly one div changed on click, and that div is on the left');
   });
 
@@ -271,7 +269,7 @@ casper.then(function() {
   }, 1, 'one pink button appears');
 });
 
-//here, I still need to input my example text, then click through to the next screen
+
 casper.thenEvaluate(function() {
   var inputFields = Array.prototype.slice.call(document.querySelectorAll('input'));
   inputFields[0].classList.add('stream-name');
@@ -284,7 +282,7 @@ casper.thenEvaluate(function() {
 });
 
 casper.then(function() {
-      this.sendKeys('.stream-name', 'MaxTunes');
+    this.sendKeys('.stream-name', 'MaxTunes');
     this.sendKeys('.stream-description', 'example description here');
     this.click('.start');
   });
@@ -294,18 +292,6 @@ casper.then(function() {
 
   });
 });
-
-// casper.thenEvaluate(function() {
-//   var buttons = Array.prototype.slice.call(document.querySelectorAll('button'))
-//     .filter(function(elem) {
-//       return window.getComputedStyle(elem).top === '0px';
-//     });
-//   buttons[0].classList.add('hamburger');
-// });
-
-// casper.then(function() {
-//   this.click('.hamburger');
-// });
 
 casper.then(function() {
   this.wait(1000, function() {});
@@ -360,6 +346,8 @@ casper.then(function() {
   test.assertSelectorHasText('.select-audio', 'Select a source', 'drop-down menu is correctly labeled');
   this.click('.select-audio');
 });
+
+//from here down, I'm having problems
 
 casper.then(function() {
   test.assertSelectorHasText('body', 'Built-in Audio Analog Stereo', 'at least the menu item appears somewhere');
